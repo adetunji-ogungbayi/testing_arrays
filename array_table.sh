@@ -21,3 +21,20 @@ column_3=("column_3")
 
 #Number of lines in each column 
 nlines=$(cat $csv_file | wc -1)
+
+echo "There are $nlines lines in the file"
+
+#Populate the array 
+for ((i=1; i<$nlines; i++))do
+    column_3[$i]=$((column_2[$i] - column_1[$i]))
+done 
+echo "${column_3[@]}"
+
+#Combine new arrya with the csv file. 
+#Write the 1st array to a file 
+#Initialize the file with a header 
+echo "${column_3[0]}" > column_3.txt
+for ((i=1; i<nlines;i++)); do
+    echo "{$column_3[$i]} >> column_3.txt"
+done
+paste -d "," $csv_file column_3.txt > report.csv
