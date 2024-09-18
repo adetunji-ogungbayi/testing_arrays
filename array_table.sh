@@ -20,7 +20,7 @@ echo "${column_2[@]}"
 column_3=("column_3")
 
 #Number of lines in each column 
-nlines=$(cat $csv_file | wc -1)
+nlines=$(cat $csv_file | wc -l)
 
 echo "There are $nlines lines in the file"
 
